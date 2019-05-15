@@ -23,8 +23,7 @@
     mode: 0775
   when: telegraf_custom_bin_url is defined
 
-- name: Start telegraf after overwriting binary
+- name: Make sure telegraf is started
   service:
     name: telegraf
     state: started
-  when: telegraf_custom_bin_url is defined
