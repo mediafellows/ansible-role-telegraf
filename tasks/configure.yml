@@ -36,4 +36,4 @@
 - name: Output telegraf status
   debug:
     var: telegraf_status.stdout_lines
-  verbosity: 1
+    verbosity: 1
