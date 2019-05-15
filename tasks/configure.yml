@@ -26,5 +26,13 @@
     name: telegraf
     enabled: yes
 
-- name: Check status
+- name: Trigger all registered notifications (restarts)
+  meta: flush_handlers
+
+- name: Check telegraf status
   command: service telegraf status
+  register: telegraf_status
+
+- name: Output telegraf status
+  debug:
+    var: telegraf_status.stdout_lines
