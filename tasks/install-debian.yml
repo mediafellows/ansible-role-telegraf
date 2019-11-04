@@ -1,11 +1,10 @@
 ---
 - name: Install any necessary dependencies [Debian/Ubuntu]
   apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
+    name:
     - python-pip
     - apt-transport-https
+    state: present
 
 - name: Import InfluxData GPG signing key [Debian/Ubuntu]
   apt_key:
