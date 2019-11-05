@@ -30,10 +30,10 @@ script:
   # Real run:
   - ansible-playbook tests/test.yml -i tests/inventory --connection=local
   # Second run to check for indempotence:
-  # Allowing 1 'change' for status read.
+  # Allowing 2 'changes' for status reads etc.
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local
-    | grep -q 'changed=0.*failed=0'
+    | grep -q 'changed=2.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
   # Run serverspec
