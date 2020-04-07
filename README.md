@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mediapeers/ansible-role-telegraf.svg?branch=master)](https://travis-ci.com/mediapeers/ansible-role-telegraf)
+[![Build Status](https://travis-ci.com/mediafellows/ansible-role-telegraf.svg?branch=master)](https://travis-ci.com/mediafellows/ansible-role-telegraf)
 
 # Ansible role for Telegraf
 
@@ -53,7 +53,7 @@ Example playbook using this role:
             tagpass:
               key: "value"
       roles:
-         - mediapeers.telegraf
+         - mediafellows.telegraf
 
 
 ## License

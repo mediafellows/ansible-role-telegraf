@@ -1,5 +1,5 @@
 ---
-# mediapeers.telegraf handlers
+# mediafellows.telegraf handlers
 
 - name: restart telegraf
   service:
