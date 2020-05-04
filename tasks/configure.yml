@@ -21,9 +21,10 @@
   notify:
     - 'restart telegraf'
 
-- name: Register telegraf deamon to start on bootup
+- name: Register telegraf deamon to start on bootup and make sure it's started now
   service:
     name: telegraf
+    state: started
     enabled: yes
 
 - name: Trigger all registered notifications (restarts)

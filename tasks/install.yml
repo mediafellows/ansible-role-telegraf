@@ -11,6 +11,7 @@
   service:
     name: telegraf
     state: stopped
+  register: stopping_result
   when: telegraf_custom_bin_url is defined
 
 - name: Overwrite telegraf binary with custom build one from URL
@@ -27,8 +28,3 @@
   pause:
     seconds: 1
   when: telegraf_custom_bin_url is defined
-
-- name: Make sure telegraf is started
-  service:
-    name: telegraf
-    state: started
