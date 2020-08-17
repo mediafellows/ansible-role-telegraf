@@ -1,9 +1,7 @@
 ---
 - name: Install any necessary dependencies [Debian/Ubuntu]
   apt:
-    name:
-      - python-pip
-      - apt-transport-https
+    name: apt-transport-https
     state: present
 
 - name: Import InfluxData GPG signing key [Debian/Ubuntu]
