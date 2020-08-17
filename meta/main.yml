@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: Ross McDonald
+  role_name: telegraf
+  author: "Ross McDonald, Stefan Horning"
   description: Install and configure Telegraf, the plugin-driven server agent for reporting metrics into InfluxDB
   company: InfluxData
   license: MIT
