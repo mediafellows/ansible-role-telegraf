@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mediafellows/ansible-role-telegraf.svg?branch=master)](https://travis-ci.com/mediafellows/ansible-role-telegraf)
+[]()
 
 # Ansible role for Telegraf
 
