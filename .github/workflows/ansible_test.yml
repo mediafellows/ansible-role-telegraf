@@ -38,8 +38,8 @@ jobs:
       - name: Real Ansible run
         run: ansible-playbook -i tests/inventory tests/test.yml
 
-      - name: Second run to check for indempotence (allow 3 changes for status reads etc.)
-        run: "ansible-playbook -i tests/inventory tests/test.yml | grep -q 'changed=3.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
+      - name: Second run to check for indempotence (allow 4 changes for status reads etc.)
+        run: "ansible-playbook -i tests/inventory tests/test.yml | grep -q 'changed=4.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
 
       - name: Output result of config file (only non commented lines)
         run: sed '/ *#/d; /^ *$/d' /etc/telegraf/telegraf.conf

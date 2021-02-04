@@ -1,4 +1,4 @@
-[]()
+[![Ansible-Test](https://github.com/mediafellows/ansible-role-telegraf/workflows/Ansible-Test/badge.svg)](https://github.com/mediafellows/ansible-role-telegraf/actions?query=workflow%3AAnsible-Test)
 
 # Ansible role for Telegraf
 
