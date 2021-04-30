@@ -30,6 +30,12 @@
 - name: Trigger all registered notifications (restarts)
   meta: flush_handlers
 
+- name: Stop telegraf for only collecting metrics after explicit start (when flag is set)
+  service:
+    name: telegraf
+    state: stopped
+  when: telegraf_stop_after_install == true
+
 - name: Check telegraf status
   command: service telegraf status
   register: telegraf_status

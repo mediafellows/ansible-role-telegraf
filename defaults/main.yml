@@ -14,6 +14,11 @@ telegraf_omit_hostname: "false"
 telegraf_flush_interval: 20s
 telegraf_flush_jitter: 5s
 
+# set to true if you want telegraf to be installed and configured but not yet
+# started (by this role), perhaps to manually start if lateron after full setup is done
+# and machine is ready to provide meaningful/all metrics.
+telegraf_stop_after_install: false
+
 # Define this variable if you want to provide your own config file,
 # without passing plugin configs through the telegraf_input_plugins variable.
 # Will be put into /etc/telegraf/telegraf.d/ config dir.
