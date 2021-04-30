@@ -39,6 +39,7 @@
 - name: Check telegraf status
   command: service telegraf status
   register: telegraf_status
+  ignore_errors: true
 
 - name: Output telegraf status
   debug:
