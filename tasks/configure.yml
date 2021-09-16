@@ -2,19 +2,19 @@
 # configure and (re)start telegraf and make sure it's enabled
 
 - name: Create Telegraf config file
-  template:
+  ansible.builtin.template:
     src: telegraf.conf.j2
     dest: "{{ telegraf_configuration_dir }}/telegraf.conf"
   notify:
     - 'restart telegraf'
 
 - name: Output destination file name for custom Telegraf config
-  debug:
+  ansible.builtin.debug:
     msg: "{{ (telegraf_custom_config_file|basename).split('.')|first }}.conf"
   when: telegraf_custom_config_file is defined
 
 - name: Create additional Telegraf config from given template/file
-  template:
+  ansible.builtin.template:
     src: "{{ telegraf_custom_config_file }}"
     dest: "{{ telegraf_configuration_dir }}/telegraf.d/{{ (telegraf_custom_config_file|basename).split('.')|first }}.conf"
   when: telegraf_custom_config_file is defined
@@ -22,26 +22,27 @@
     - 'restart telegraf'
 
 - name: Register telegraf deamon to start on bootup and make sure it's started now
-  service:
+  ansible.builtin.service:
     name: telegraf
     state: started
     enabled: yes
 
 - name: Trigger all registered notifications (restarts)
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Stop telegraf for only collecting metrics after explicit start (when flag is set)
-  service:
+  ansible.builtin.service:
     name: telegraf
     state: stopped
   when: telegraf_stop_after_install == true
 
 - name: Check telegraf status
-  command: service telegraf status
+  ansible.builtin.command:
+    cmd: service telegraf status
   register: telegraf_status
   ignore_errors: true
 
 - name: Output telegraf status
-  debug:
+  ansible.builtin.debug:
     var: telegraf_status.stdout_lines
     verbosity: 1

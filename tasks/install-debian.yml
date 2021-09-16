@@ -1,21 +1,21 @@
 ---
 - name: Install any necessary dependencies [Debian/Ubuntu]
-  apt:
+  ansible.builtin.apt:
     name: apt-transport-https
     state: present
 
 - name: Import InfluxData GPG signing key [Debian/Ubuntu]
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ telegraf_repo_base_url }}/influxdb.key"
     state: present
 
 - name: Add InfluxData repository [Debian/Ubuntu]
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb {{ telegraf_repo_base_url }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ telegraf_install_version }}
     state: present
 
 - name: Install Telegraf packages [Debian/Ubuntu]
-  apt:
+  ansible.builtin.apt:
     name: telegraf
     state: latest
     update_cache: yes

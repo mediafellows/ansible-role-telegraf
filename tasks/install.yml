@@ -1,21 +1,21 @@
 ---
-- include_tasks: install-redhat.yml
+- ansible.builtin.include_tasks: install-redhat.yml
   when: ansible_os_family == "RedHat"
 
-- include_tasks: install-debian.yml
+- ansible.builtin.include_tasks: install-debian.yml
   when: ansible_os_family == "Debian"
 
 # Allows overwriting telegraf bin with custom build one:
 
 - name: Stop telegraf before overwriting binary
-  service:
+  ansible.builtin.service:
     name: telegraf
     state: stopped
   register: stopping_result
   when: telegraf_custom_bin_url is defined
 
 - name: Overwrite telegraf binary with custom build one from URL
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ telegraf_custom_bin_url }}'
     dest: /usr/bin/telegraf
     force: yes
@@ -25,6 +25,6 @@
   when: telegraf_custom_bin_url is defined
 
 - name: Pause a second after replacing binary
-  pause:
+  ansible.builtin.pause:
     seconds: 1
   when: telegraf_custom_bin_url is defined

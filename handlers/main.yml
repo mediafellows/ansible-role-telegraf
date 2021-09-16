@@ -2,11 +2,11 @@
 # mediafellows.telegraf handlers
 
 - name: restart telegraf
-  service:
+  ansible.builtin.service:
     name: telegraf
     state: restarted
 
 - name: wait for startup
   listen: restart telegraf
-  pause:
+  ansible.builtin.pause:
     seconds: 3
