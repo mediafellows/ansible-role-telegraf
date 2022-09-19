@@ -24,17 +24,22 @@
 - name: Register telegraf deamon to start on bootup and make sure it's started now
   ansible.builtin.service:
     name: telegraf
-    state: started
     enabled: yes
 
 - name: Trigger all registered notifications (restarts)
   ansible.builtin.meta: flush_handlers
 
-- name: Stop telegraf for only collecting metrics after explicit start (when flag is set)
+- name: Ensure telegraf is in stopped state when telegraf_stop_after_install (in pre-install scenarious, when you are just baking images etc.)
   ansible.builtin.service:
     name: telegraf
     state: stopped
   when: telegraf_stop_after_install == true
+
+- name: Make sure telegraf is started (unless telegraf_stop_after_install is true)
+  ansible.builtin.service:
+    name: telegraf
+    state: started
+  when: telegraf_stop_after_install is undefined or telegraf_stop_after_install != true
 
 - name: Check telegraf status
   ansible.builtin.command:

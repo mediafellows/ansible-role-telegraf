@@ -5,6 +5,7 @@
   ansible.builtin.service:
     name: telegraf
     state: restarted
+  when: telegraf_stop_after_install is undefined or telegraf_stop_after_install != true
 
 - name: wait for startup
   listen: restart telegraf
