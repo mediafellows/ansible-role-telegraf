@@ -4,14 +4,14 @@
     name: apt-transport-https
     state: present
 
-- name: Import InfluxData GPG signing key [Debian/Ubuntu]
-  ansible.builtin.apt_key:
-    url: "{{ telegraf_repo_base_url }}/influxdata-archive_compat.key"
-    state: present
+- name: Install Telegraf apt key [Debian/Ubuntu]
+  ansible.builtin.get_url:
+    url: "{{ telegraf_repo_base_url }}/influxdata-archive.key"
+    dest: "{{ telegraf_repo_apt_key_dest }}"
 
 - name: Add InfluxData repository [Debian/Ubuntu]
   ansible.builtin.apt_repository:
-    repo: deb {{ telegraf_repo_base_url }}/{{ ansible_distribution | lower }} stable main
+    repo: deb [signed-by={{ telegraf_repo_apt_key_dest }}] {{ telegraf_repo_base_url }}/{{ ansible_distribution | lower }} stable main
     state: present
 
 - name: Install Telegraf packages [Debian/Ubuntu]
