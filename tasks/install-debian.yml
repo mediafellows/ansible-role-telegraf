@@ -4,6 +4,11 @@
     name: apt-transport-https
     state: present
 
+- name: Ensure apt key dir exists
+  ansible.builtin.file:
+    path: "{{ telegraf_repo_apt_key_dest | dirname }}"
+    state: directory
+
 - name: Install Telegraf apt key [Debian/Ubuntu]
   ansible.builtin.get_url:
     url: "{{ telegraf_repo_base_url }}/influxdata-archive.key"
