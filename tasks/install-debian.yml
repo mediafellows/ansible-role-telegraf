@@ -17,6 +17,8 @@
 - name: Convert and copy apt repo key into apt format and dir (gpg)
   ansible.builtin.shell:
     cmd: "cat {{ telegraf_repo_apt_tmp_key_dest }} | gpg --dearmor | sudo tee {{ telegraf_repo_apt_key_dest }}"
+  environment:
+    MODULE_STRICT_UTF8_RESPONSE: "False"
 
 - name: Add InfluxData repository [Debian/Ubuntu]
   ansible.builtin.apt_repository:
