@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANSIBLE_FORCE_COLOR: true
+      ANSIBLE_MODULE_STRICT_UTF8_RESPONSE: false
     steps:
 
       - name: Checkout code from Github
