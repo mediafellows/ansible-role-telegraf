@@ -5,7 +5,10 @@ telegraf_install_version: stable
 
 # Telegraf repo (by Influxdata)
 telegraf_repo_base_url: "https://repos.influxdata.com"
-telegraf_repo_apt_key_dest: /etc/apt/keyrings/influxdata-archive.asc
+telegraf_repo_apt_key_name: influxdata-archive_compat-exp2029.key
+telegraf_repo_apt_tmp_key_dest: '/tmp/{{ telegraf_repo_apt_key_name }}'
+
+telegraf_repo_apt_key_dest: /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg
 
 # Sane defaults for global settings
 telegraf_agent_interval: 10s

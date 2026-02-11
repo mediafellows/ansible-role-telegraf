@@ -11,8 +11,12 @@
 
 - name: Install Telegraf apt key [Debian/Ubuntu]
   ansible.builtin.get_url:
-    url: "{{ telegraf_repo_base_url }}/influxdata-archive.key"
-    dest: "{{ telegraf_repo_apt_key_dest }}"
+    url: "{{ telegraf_repo_base_url }}/{{ telegraf_repo_apt_key_name }}"
+    dest: "{{ telegraf_repo_apt_tmp_key_dest }}"
+
+- name: Convert and copy apt repo key into apt format and dir (gpg)
+  ansible.builtin.shell:
+    cmd: "cat {{ telegraf_repo_apt_tmp_key_dest }} | gpg --dearmor | sudo tee {{ telegraf_repo_apt_key_dest }}"
 
 - name: Add InfluxData repository [Debian/Ubuntu]
   ansible.builtin.apt_repository:
